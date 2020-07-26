@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ETCH-A-SKETCH</title>
+    <meta charset="UTF-8"/>
+  </head>
+  <body>
+    <div id='main-container'>
+    <div id='button-grid-container'>
+      <div id='button-container'>
+        <button id='rainbow'>Rainbow Mode</button>
+        <button id='professional'>Professional Mode</button>
+        <div>Set the grid size:</div>
+        <input type='text' id='choose-grid-size'></input>
+        <input type='button' value='Set Size' id='confirm-grid-size'
+        onClick='setGridSize()'></input>
+      </div>
+      <div id='sub-container'>
+        <div id='title'>Etch-a-Sketch</div>
+        <div></div>
+        <div id='grid-container'></div>
+      </div>
+    </div>
+    </div>
+  </body>
+    <script>
+      let gridSize = 30;
+
+      document.getElementById('choose-grid-size').addEventListener('keypress', 
+      function chooseGridSize (e) {
+        if (e.key === 'Enter') {
+          setGridSize()
+        }
+      })
+
+      function setGridSize() {
+        let newGridSize = document.getElementById('choose-grid-size')
+        if (newGridSize.value > 50) {
+          alert('Please set a value of 50 or less.')
+          node = document.getElementById('grid-container');
+          node.innerHTML = ''
+          createGrid()
+        } else if (newGridSize.value <= 50 && newGridSize.value >= 1) {
+          gridSize = newGridSize.value;
+          node = document.getElementById('grid-container');
+          node.innerHTML = ''
+          createGrid()
+        } else if (newGridSize.value != Number) {
+          node = document.getElementById('grid-container');
+          node.innerHTML = ''
+          createGrid()
+        }
+        document.getElementById('choose-grid-size').value = ''
+      }
+
+        
+      function createGrid() {
+        const grid = document.querySelector('#grid-container')
+
+        function addBoxes() {
+          const gridBoxes = document.createElement('div')
+          gridBoxes.className = 'grid-box'
+          grid.appendChild(gridBoxes)
+          }
+        for (let i = 0; i < gridSize * gridSize; i++) {
+        addBoxes()
+        }
+        document.getElementById('grid-container').style
+        ['grid-template-columns'] = `repeat(${gridSize}, 1fr`;
+        document.getElementById('grid-container').style
+        ['grid-template-row'] = `repeat(${gridSize}, 1fr)`;
+      }
+      createGrid()
+
+   
+    </script>
+    <style>
+      body {
+        text-align: center;
+      }
+      #main-container {
+        display: inline-block;
+      }
+      #button-grid-container {
+        display: flex;
+        justify-content: space-evenly;
+        max-width: 900px;
+        padding-right: 200px;
+      }
+      #sub-container {
+        display: inline-block;
+      }
+      #title {
+        text-align: center;
+        font-size: 75px;
+        font-family: sans-serif;
+        margin-top: 10px;
+        margin-bottom: 15px;
+      }
+      #grid-container {
+        display: grid;
+        height: 700px;
+        width: 700px;
+        border: 1px solid;
+        background-color: gold;
+      }
+      .grid-box {
+        margin: -1px;
+        border: 1px solid;
+        background-color: grey;
+      }
+      #button-container {
+        margin-top: 250px;
+        margin-bottom: 250px;
+        display: inline-block;
+        max-width: 200px;
+        min-width: 100px;
+        padding-right: 20px;
+      }
+      #rainbow {
+        height: 25px;
+        width: 140px;
+      }
+      #professional {
+        height: 25px;
+        width: 140px;
+        margin-top: 10px;
+        margin-bottom: 50px;
+      }
+      #choose-grid-size {
+        height: 1em;
+        width: 130px;
+      }
+      #confirm-grid-size {
+        height: 2em;
+        width: 100px;
+        margin-top: 10px;
+      }
+    </style>
+  </body>
+</html>
