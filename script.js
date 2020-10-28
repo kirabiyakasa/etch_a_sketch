@@ -73,11 +73,11 @@ function createGrid(gridSize) {
   document.getElementById('grid-container').style
   ['grid-template-row'] = `repeat(${gridSize}, 1fr)`;
 
-  set_draw_mode()
+  setDrawMode()
 }
 createGrid(30)
 
-function set_draw_mode() {
+function setDrawMode() {
   document.querySelectorAll('.grid-box').forEach(item => { 
     item.addEventListener('mouseover', event => {
       if (drawMode == 'normal') {
