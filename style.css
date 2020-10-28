@@ -5,7 +5,7 @@ body {
 #main-container {
   display: inline-block;
 }
-#button-grid-container {
+#button-title-grid-container {
   display: flex;
   justify-content: space-evenly;
   max-width: 900px;
