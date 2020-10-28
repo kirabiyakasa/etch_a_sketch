@@ -30,6 +30,13 @@ function chooseGridSize (e) {
   }
 });
 
+document.getElementById('reset-button').addEventListener('click', event => {
+  gridBoxes = document.querySelectorAll('.grid-box')
+  gridBoxes.forEach(box => 
+  box.style.cssText = ""
+  )
+});
+
 function setGridSize() {
   let newGridSize = document.getElementById('choose-grid-size')
   if (newGridSize.value > 50) {
